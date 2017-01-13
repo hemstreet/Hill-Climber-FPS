@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent (typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour {
@@ -24,7 +22,7 @@ public class FirstPersonController : MonoBehaviour {
 	void Update () {
 		
 		float yaw = Input.GetAxis("Mouse X") * mouseSensitivity;
-
+		
 		this.transform.Rotate (0, yaw, 0);
 
 		verticalRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;

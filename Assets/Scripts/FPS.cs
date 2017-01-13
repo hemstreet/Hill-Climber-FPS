@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FPS : MonoBehaviour {
 
 	public GameObject bullet_prefab;
+	public float bulletImpulse = 100f;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +20,12 @@ public class FPS : MonoBehaviour {
 	}
 
 	void Fire() {
-		Instantiate(bullet_prefab, this.transform.position, this.transform.rotation);
+		Camera cam = Camera.main;
+
+		Transform cameraTransform = cam.transform;
+		Vector3 cameraForward = cameraTransform.forward;
+
+		GameObject bullet = Instantiate(bullet_prefab, cameraTransform.position + cameraForward, cameraTransform.rotation);
+		bullet.GetComponent<Rigidbody>().AddForce(cameraForward * bulletImpulse, ForceMode.Impulse);
 	}
 }
