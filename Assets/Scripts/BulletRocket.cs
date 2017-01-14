@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FPS : MonoBehaviour {
+public class BulletRocket : MonoBehaviour {
 
 	public GameObject BulletPrefab;
 	public float BulletImpulse = 100f;
