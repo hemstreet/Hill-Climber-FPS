@@ -2,7 +2,7 @@
 
 public class Enemy : MonoBehaviour {
 
-	public float health = 10f;
+	public float Health = 10f;
 	
 	// Use this for initialization
 	void Start () {
@@ -13,11 +13,11 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		
 	}
-	void TakeDamage(int amount = 1) 
+    public void TakeDamage(int amount = 1)
 	{
-		health -= amount;
+		Health -= amount;
 
-		if (health <= 0) {
+		if (Health <= 0) {
 			Destroy(gameObject);
 		}
 	}

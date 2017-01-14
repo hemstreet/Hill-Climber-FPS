@@ -3,53 +3,53 @@
 [RequireComponent (typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour {
 
-	public float movementSpeed = 10f;
-	public float mouseSensitivity = 2.0f;
-	public float jumpSpeed = 7f;
-	float verticalRotation = 0;
-	public float cameraRollRange = 60.0f;
-	CharacterController characterController;
+	public float MovementSpeed = 10f;
+	public float MouseSensitivity = 2.0f;
+	public float JumpSpeed = 7f;
+	public float CameraRollRange = 60.0f;
+	CharacterController _characterController;
 
-	float verticalVelocity = 0;
+    float _verticalRotation = 0;
+    float _verticalVelocity = 0;
 
 	// Use this for initialization
 	void Start () {
 		Cursor.lockState = CursorLockMode.Locked;
-		characterController = GetComponent<CharacterController> ();
+		_characterController = GetComponent<CharacterController> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		float yaw = Input.GetAxis("Mouse X") * mouseSensitivity;
+		float yaw = Input.GetAxis("Mouse X") * MouseSensitivity;
 		
 		this.transform.Rotate (0, yaw, 0);
 
-		verticalRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
-		verticalRotation = Mathf.Clamp (verticalRotation, -cameraRollRange, cameraRollRange);
-		Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
+		_verticalRotation -= Input.GetAxis ("Mouse Y") * MouseSensitivity;
+		_verticalRotation = Mathf.Clamp (_verticalRotation, -CameraRollRange, CameraRollRange);
+		Camera.main.transform.localRotation = Quaternion.Euler (_verticalRotation, 0, 0);
 			
 		// Movement
-		float forwardSpeed = Input.GetAxis ("Vertical") * movementSpeed;
-		float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed;
+		float forwardSpeed = Input.GetAxis ("Vertical") * MovementSpeed;
+		float sideSpeed = Input.GetAxis ("Horizontal") * MovementSpeed;
 
-		if (characterController.isGrounded) 
+		if (_characterController.isGrounded)
 		{
 			if (Input.GetButtonDown("Jump")) 
 			{
-				verticalVelocity = jumpSpeed;	
+				_verticalVelocity = JumpSpeed;
 
 			}
 		}
 	
-		verticalVelocity += Physics.gravity.y * Time.deltaTime;
+		_verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
-		Vector3 speed = new Vector3 (sideSpeed, verticalVelocity, forwardSpeed);
+		Vector3 speed = new Vector3 (sideSpeed, _verticalVelocity, forwardSpeed);
 
 
 		speed = this.transform.rotation * speed;
 
-		characterController.Move (speed * Time.deltaTime);
+		_characterController.Move (speed * Time.deltaTime);
 
 	}
 }

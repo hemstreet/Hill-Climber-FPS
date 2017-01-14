@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BulletRay : MonoBehaviour {
 	public float cooldown = 0.2f;
@@ -18,27 +16,32 @@ public class BulletRay : MonoBehaviour {
 	void Update () {
 		cooldownRemaining -= Time.deltaTime;
 
-		Debug.Log(cooldownRemaining);
-		if (Input.GetMouseButton(0) && cooldownRemaining <= 0) 
-		{
-			cooldownRemaining = cooldown;
+	    if (!Input.GetMouseButton(0) || !(cooldownRemaining <= 0)) return;
+	    cooldownRemaining = cooldown;
 			
-			Transform transform = Camera.main.transform;
-			Ray ray = new Ray(transform.position, transform.forward);
-			RaycastHit hitInfo;
+	    Transform transform = Camera.main.transform;
+	    Ray ray = new Ray(transform.position, transform.forward);
+	    RaycastHit hitInfo;
 
-			if (Physics.Raycast(ray, out hitInfo, range)) 
-			{
-				// hitInfo.collider
-				Vector3 hitPoint = hitInfo.point;
+	    //
+	    if (!Physics.Raycast(ray, out hitInfo, range)) return;
 
-				if ( debrisPrefab != null) 
-				{
-					Instantiate(debrisPrefab, hitPoint, Quaternion.identity);
-				}
-				// Instantiate(debrisPrefab, hitPoint, hitInfo.normal)
-				// Instantiate(debrisPrefab, hitPoint, Quaternion.identity)
-			}
-		}
+	    // hitInfo.collider
+	    Vector3 hitPoint = hitInfo.point;
+
+	    if ( debrisPrefab != null)
+	    {
+	        Instantiate(debrisPrefab, hitPoint, Quaternion.identity);
+	    }
+
+
+	    if (hitInfo.transform.gameObject.tag  == "Enemy")
+	    {
+
+	        Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
+            enemy.TakeDamage();
+	    }
+	    // Instantiate(debrisPrefab, hitPoint, hitInfo.normal)
+	    // Instantiate(debrisPrefab, hitPoint, Quaternion.identity)
 	}
 }
