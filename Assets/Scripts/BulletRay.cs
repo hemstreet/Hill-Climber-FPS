@@ -1,45 +1,47 @@
 ﻿using UnityEngine;
 
 public class BulletRay : MonoBehaviour {
-	public float cooldown = 0.2f;
-	public float range = 100.0f;
-	float cooldownRemaining = 0;
-	public GameObject debrisPrefab;
+	public float Cooldown = 0.2f;
+	public float Range = 100.0f;
+	public GameObject DebrisPrefab;
 
+    private float _cooldownRemaining = 0;
 	
-	// Use this for initialization
+    // Use this for initialization
 	void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		cooldownRemaining -= Time.deltaTime;
 
-	    if (!Input.GetMouseButton(0) || !(cooldownRemaining <= 0)) return;
-	    cooldownRemaining = cooldown;
+	    _cooldownRemaining -= Time.deltaTime;
+
+	    if (!Input.GetMouseButton(0) || !(_cooldownRemaining <= 0)) return;
+
+	    _cooldownRemaining = Cooldown;
 			
 	    Transform transform = Camera.main.transform;
 	    Ray ray = new Ray(transform.position, transform.forward);
 	    RaycastHit hitInfo;
 
-	    //
-	    if (!Physics.Raycast(ray, out hitInfo, range)) return;
+	    if (!Physics.Raycast(ray, out hitInfo, Range)) return;
 
-	    // hitInfo.collider
 	    Vector3 hitPoint = hitInfo.point;
 
-	    if ( debrisPrefab != null)
+	    if ( DebrisPrefab != null)
 	    {
-	        Instantiate(debrisPrefab, hitPoint, Quaternion.identity);
+	        Instantiate(DebrisPrefab, hitPoint, Quaternion.identity);
 	    }
 
-
-	    if (hitInfo.transform.gameObject.tag  == "Enemy")
+	    // @TODO make this tag handle "hittable" objects and call a generic Hit method.
+	    // any gameObjects w/ this flag need to implement this method ( as an interface? )
+	    if (hitInfo.transform.gameObject.CompareTag("Enemy"))
 	    {
-
+	        // hitInfo.collider.gameObject.GetType()
+	        Debug.Log("Hit Enemny");
 	        Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
-            enemy.TakeDamage();
+            enemy.Hit();
 	    }
 	    // Instantiate(debrisPrefab, hitPoint, hitInfo.normal)
 	    // Instantiate(debrisPrefab, hitPoint, Quaternion.identity)

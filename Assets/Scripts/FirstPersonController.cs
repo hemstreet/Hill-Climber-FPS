@@ -7,15 +7,15 @@ public class FirstPersonController : MonoBehaviour {
 	public float MouseSensitivity = 2.0f;
 	public float JumpSpeed = 7f;
 	public float CameraRollRange = 60.0f;
-	CharacterController _characterController;
+	public CharacterController CharacterController;
 
-    float _verticalRotation = 0;
-    float _verticalVelocity = 0;
+    private float _verticalRotation = 0;
+    private float _verticalVelocity = 0;
 
 	// Use this for initialization
 	void Start () {
 		Cursor.lockState = CursorLockMode.Locked;
-		_characterController = GetComponent<CharacterController> ();
+		CharacterController = GetComponent<CharacterController> ();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +33,7 @@ public class FirstPersonController : MonoBehaviour {
 		float forwardSpeed = Input.GetAxis ("Vertical") * MovementSpeed;
 		float sideSpeed = Input.GetAxis ("Horizontal") * MovementSpeed;
 
-		if (_characterController.isGrounded)
+		if (CharacterController.isGrounded)
 		{
 			if (Input.GetButtonDown("Jump")) 
 			{
@@ -49,7 +49,7 @@ public class FirstPersonController : MonoBehaviour {
 
 		speed = this.transform.rotation * speed;
 
-		_characterController.Move (speed * Time.deltaTime);
+		CharacterController.Move (speed * Time.deltaTime);
 
 	}
 }

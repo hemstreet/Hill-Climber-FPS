@@ -2,8 +2,8 @@
 
 public class FPS : MonoBehaviour {
 
-	public GameObject bullet_prefab;
-	public float bulletImpulse = 100f;
+	public GameObject BulletPrefab;
+	public float BulletImpulse = 100f;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +25,7 @@ public class FPS : MonoBehaviour {
 		Transform cameraTransform = cam.transform;
 		Vector3 cameraForward = cameraTransform.forward;
 
-		GameObject bullet = Instantiate(bullet_prefab, cameraTransform.position + cameraForward, cameraTransform.rotation);
-		bullet.GetComponent<Rigidbody>().AddForce(cameraForward * bulletImpulse, ForceMode.Impulse);
+		GameObject bullet = Instantiate(BulletPrefab, cameraTransform.position + cameraForward, cameraTransform.rotation);
+		bullet.GetComponent<Rigidbody>().AddForce(cameraForward * BulletImpulse, ForceMode.Impulse);
 	}
 }

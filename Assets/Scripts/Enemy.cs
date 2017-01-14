@@ -21,4 +21,10 @@ public class Enemy : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
+
+    // Hit an object, we can detect where they were hit ( helmet / body ) and adjust damage from there
+    public void Hit()
+    {
+        TakeDamage(1);
+    }
 }
