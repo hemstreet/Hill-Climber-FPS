@@ -46,10 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BulletRay.cs" />
-     <Compile Include="Assets\Scripts\BulletRocket.cs" />
-     <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\FirstPersonController.cs" />
+     <Compile Include="Assets\Scripts\AI\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Characters\FirstPersonController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\BulletRay.cs" />
+     <Compile Include="Assets\Scripts\Weapons\BulletRocket.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
