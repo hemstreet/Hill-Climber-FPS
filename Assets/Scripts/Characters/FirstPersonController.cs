@@ -14,6 +14,7 @@ public class FirstPersonController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+	    
 		Cursor.lockState = CursorLockMode.Locked;
 		CharacterController = GetComponent<CharacterController> ();
 	}
