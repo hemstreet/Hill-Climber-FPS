@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class BulletRay : MonoBehaviour {
+public class BulletRay : NetworkBehaviour {
 	public float Cooldown = 0.2f;
 	public float Range = 100.0f;
 	public GameObject DebrisPrefab;
@@ -9,7 +10,11 @@ public class BulletRay : MonoBehaviour {
 	
     // Use this for initialization
 	void Start () {
-		
+	    if (!isLocalPlayer)
+	    {
+	        Destroy(this);
+	        return;
+	    }
 	}
 	
 	// Update is called once per frame

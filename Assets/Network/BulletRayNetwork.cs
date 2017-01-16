@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
 
-public class BulletRayNetwork : NetworkBehaviour {
+public class BulletRayNetwork : MonoBehaviour {
 	public float Cooldown = 0.2f;
 	public float Range = 100.0f;
 	public GameObject DebrisPrefab;
@@ -37,7 +36,7 @@ public class BulletRayNetwork : NetworkBehaviour {
 
 	    // @TODO make this tag handle "hittable" objects and call a generic Hit method.
 	    // any gameObjects w/ this flag need to implement this method ( as an interface? )
-	    if (hitInfo.transform.gameObject.CompareTag("Enemy"))
+	    if (hitInfo.transform.gameObject.CompareTag("Player"))
 	    {
 	        // hitInfo.collider.gameObject.GetType()
 	        Debug.Log("Hit Enemny");

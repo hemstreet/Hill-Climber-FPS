@@ -28,6 +28,9 @@ public class FirstPersonControllerNetwork : NetworkBehaviour {
             return;
         }
 
+        PlayerHUD hud = new PlayerHUD();
+        Enemy enemy = new Enemy(hud);
+
         mainCamera = Camera.main.transform;
 
         Cursor.lockState = CursorLockMode.Locked;

@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Network\BulletRayNetwork.cs" />
+     <Compile Include="Assets\Network\EnemyNetwork.cs" />
      <Compile Include="Assets\Network\FirstPersonControllerNetwork.cs" />
+     <Compile Include="Assets\Network\PlayerHUD.cs" />
      <Compile Include="Assets\Scripts\AI\Enemy.cs" />
      <Compile Include="Assets\Scripts\Characters\FirstPersonController.cs" />
      <Compile Include="Assets\Scripts\Weapons\BulletRay.cs" />
