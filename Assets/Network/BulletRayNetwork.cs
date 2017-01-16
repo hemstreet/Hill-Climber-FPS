@@ -11,11 +11,6 @@ public class BulletRayNetwork : NetworkBehaviour {
     // Use this for initialization
     void Start()
     {
-        if (!isLocalPlayer)
-        {
-            Destroy(this);
-            return;
-        }
     }
 
     // Update is called once per frame

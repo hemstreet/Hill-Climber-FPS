@@ -11,6 +11,7 @@ public class FirstPersonControllerNetwork : NetworkBehaviour {
 
     [Header("Camera")]
     public float CameraRollRange = 60.0f;
+    public float BaseCameraHeight = 1.75f;
 
     [Header("Character")]
     public CharacterController CharacterController;
@@ -73,7 +74,9 @@ public class FirstPersonControllerNetwork : NetworkBehaviour {
     void MoveCamera()
     {
 
-        mainCamera.position = new Vector3(transform.position.x, transform.position.y + 1.75f, transform.position.z);
+        mainCamera.position = new Vector3(transform.position.x,
+                                          transform.position.y + BaseCameraHeight,
+                                          transform.position.z);
         mainCamera.rotation = transform.rotation;
     }
 }
