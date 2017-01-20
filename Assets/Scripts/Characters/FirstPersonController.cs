@@ -3,54 +3,53 @@
 [RequireComponent (typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour {
 
-	public float MovementSpeed = 10f;
-	public float MouseSensitivity = 2.0f;
-	public float JumpSpeed = 7f;
-	public float CameraRollRange = 60.0f;
-	public CharacterController CharacterController;
+	public float movementSpeed = 10f;
+	public float mouseSensitivity = 2.0f;
+	public float jumpSpeed = 7f;
+	float verticalRotation = 0;
+	public float cameraRollRange = 60.0f;
+	CharacterController characterController;
 
-    private float _verticalRotation = 0;
-    private float _verticalVelocity = 0;
+	float verticalVelocity = 0;
 
 	// Use this for initialization
 	void Start () {
-	    
 		Cursor.lockState = CursorLockMode.Locked;
-		CharacterController = GetComponent<CharacterController> ();
+		characterController = GetComponent<CharacterController> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
-		float yaw = Input.GetAxis("Mouse X") * MouseSensitivity;
-		
+
+		float yaw = Input.GetAxis("Mouse X") * mouseSensitivity;
+
 		this.transform.Rotate (0, yaw, 0);
 
-		_verticalRotation -= Input.GetAxis ("Mouse Y") * MouseSensitivity;
-		_verticalRotation = Mathf.Clamp (_verticalRotation, -CameraRollRange, CameraRollRange);
-		Camera.main.transform.localRotation = Quaternion.Euler (_verticalRotation, 0, 0);
-			
-		// Movement
-		float forwardSpeed = Input.GetAxis ("Vertical") * MovementSpeed;
-		float sideSpeed = Input.GetAxis ("Horizontal") * MovementSpeed;
+		verticalRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
+		verticalRotation = Mathf.Clamp (verticalRotation, -cameraRollRange, cameraRollRange);
+		Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
 
-		if (CharacterController.isGrounded)
+		// Movement
+		float forwardSpeed = Input.GetAxis ("Vertical") * movementSpeed;
+		float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed;
+
+		if (characterController.isGrounded)
 		{
-			if (Input.GetButtonDown("Jump")) 
+			if (Input.GetButtonDown("Jump"))
 			{
-				_verticalVelocity = JumpSpeed;
+				verticalVelocity = jumpSpeed;
 
 			}
 		}
-	
-		_verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
-		Vector3 speed = new Vector3 (sideSpeed, _verticalVelocity, forwardSpeed);
+		verticalVelocity += Physics.gravity.y * Time.deltaTime;
+
+		Vector3 speed = new Vector3 (sideSpeed, verticalVelocity, forwardSpeed);
 
 
 		speed = this.transform.rotation * speed;
 
-		CharacterController.Move (speed * Time.deltaTime);
+		characterController.Move (speed * Time.deltaTime);
 
 	}
 }

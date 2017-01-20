@@ -3,13 +3,12 @@ using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
 {
-    private Text _health;
+    public Text _health;
 
     // Use this for initialization
     void Start ()
     {
-        _health = GetComponent<Text>();
-        _health.text = "Health" + 100f;
+        _health.text = "Health";
     }
 
     // Update is called once per frame

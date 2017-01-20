@@ -1,17 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
 
-public class EnemyNetwork : NetworkBehaviour {
+public class EnemyNetwork : MonoBehaviour {
 
 	public float Health = 10f;
 	
 	// Use this for initialization
 	void Start () {
-	    if (!isLocalPlayer)
-	    {
-	        Destroy(this);
-	        return;
-	    }
 	}
 
     public void TakeDamage(int amount = 1)

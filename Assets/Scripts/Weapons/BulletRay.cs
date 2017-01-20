@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
 
-public class BulletRay : NetworkBehaviour {
+public class BulletRay : MonoBehaviour {
 	public float Cooldown = 0.2f;
 	public float Range = 100.0f;
 	public GameObject DebrisPrefab;
@@ -10,11 +9,6 @@ public class BulletRay : NetworkBehaviour {
 	
     // Use this for initialization
 	void Start () {
-	    if (!isLocalPlayer)
-	    {
-	        Destroy(this);
-	        return;
-	    }
 	}
 	
 	// Update is called once per frame
@@ -45,8 +39,8 @@ public class BulletRay : NetworkBehaviour {
 	    {
 	        // hitInfo.collider.gameObject.GetType()
 	        Debug.Log("Hit Enemny");
-	        Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
-            enemy.Hit();
+	        //Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
+            // enemy.Hit();
 	    }
 	    // Instantiate(debrisPrefab, hitPoint, hitInfo.normal)
 	    // Instantiate(debrisPrefab, hitPoint, Quaternion.identity)
