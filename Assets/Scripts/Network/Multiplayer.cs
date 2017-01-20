@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Network
@@ -11,12 +9,12 @@ namespace Network
         public Behaviour[] componentsToDisable;
         void Start ()
         {
-            if (!isLocalPlayer)
+
+            if (isLocalPlayer) return;
+
+            foreach (Behaviour script in componentsToDisable)
             {
-                for (int i = 0; i < componentsToDisable.Length; i++)
-                {
-                    componentsToDisable[i].enabled = false;
-                }
+                script.enabled = false;
             }
         }
 
