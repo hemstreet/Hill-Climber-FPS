@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using UnityEngine;
-using UnityEngine.Windows.Speech;
+﻿using System.Collections.Generic;
 
 public static class PlayerVariables
 {
