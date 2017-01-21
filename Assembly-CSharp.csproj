@@ -46,10 +46,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Items\Item.cs" />
+     <Compile Include="Assets\Scripts\Items\Helmet.cs" />
+     <Compile Include="Assets\Scripts\Items\ItemBase.cs" />
      <Compile Include="Assets\Scripts\Network\Multiplayer.cs" />
      <Compile Include="Assets\Scripts\Player\FirstPersonController.cs" />
+     <Compile Include="Assets\Scripts\Player\Health.cs" />
+     <Compile Include="Assets\Scripts\Player\Inventory.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerVariables.cs" />
+     <Compile Include="Assets\Scripts\Score\Altitude.cs" />
+     <Compile Include="Assets\Scripts\Score\Scoreboard.cs" />
+     <Compile Include="Assets\Scripts\Weapons\BaseWeapon.cs" />
      <Compile Include="Assets\Scripts\Weapons\BulletRay.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
