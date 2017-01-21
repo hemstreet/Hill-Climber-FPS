@@ -12,6 +12,7 @@ namespace Network
 
             if (isLocalPlayer) return;
 
+
             foreach (Behaviour script in componentsToDisable)
             {
                 script.enabled = false;

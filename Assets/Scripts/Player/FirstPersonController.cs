@@ -24,6 +24,7 @@ namespace Player
         // Update is called once per frame
         void Update () {
 
+
             float yaw = Input.GetAxis("Mouse X") * mouseSensitivity;
 
             this.transform.Rotate (0, yaw, 0);
