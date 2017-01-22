@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Player;
+using UnityEngine;
 
 namespace Items
 {
@@ -17,6 +18,7 @@ namespace Items
 
         void Pickup()
         {
+            Health.UpdateHealth(-10);
             Debug.Log("Item Picked up");
         }
     }

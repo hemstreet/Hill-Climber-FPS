@@ -2,7 +2,7 @@
 
 namespace AI
 {
-    public class Simple  : MonoBehaviour
+    public class Simple : MonoBehaviour
     {
 
         void Setup()
