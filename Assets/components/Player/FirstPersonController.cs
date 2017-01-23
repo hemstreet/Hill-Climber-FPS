@@ -28,7 +28,7 @@ namespace Player
         // Use this for initialization
         void Start () {
             Cursor.lockState = CursorLockMode.Locked;
-            characterController = GetComponent<CharacterController> ();
+            characterController = GetComponent<CharacterController>();
 
             IniitalizePlayerVariables();
         }
@@ -36,7 +36,13 @@ namespace Player
         // Update is called once per frame
         void Update () {
 
-            CameraCheck();
+            float yaw = Input.GetAxis("Mouse X") * mouseSensitivity;
+
+            transform.Rotate (0, yaw, 0);
+
+            verticalRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
+            verticalRotation = Mathf.Clamp (verticalRotation, -cameraRollRange, cameraRollRange);
+            Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
 
             MoveCheck();
 
@@ -44,16 +50,6 @@ namespace Player
 
         }
 
-        void CameraCheck()
-        {
-            float yaw = Input.GetAxis("Mouse X") * mouseSensitivity;
-
-            this.transform.Rotate (0, yaw, 0);
-
-            verticalRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
-            verticalRotation = Mathf.Clamp (verticalRotation, -cameraRollRange, cameraRollRange);
-            Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
-        }
 
         void MoveCheck()
         {
@@ -62,9 +58,9 @@ namespace Player
 
             Vector3 speed = new Vector3 (sideSpeed, verticalVelocity, forwardSpeed);
 
-            speed = this.transform.rotation * speed;
+            speed = transform.rotation * speed;
 
-            characterController.Move (speed * Time.deltaTime);
+            characterController.Move(speed * Time.deltaTime);
         }
 
         void JumpCheck()

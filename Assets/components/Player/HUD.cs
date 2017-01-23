@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 namespace Player
 {
@@ -9,11 +7,24 @@ namespace Player
     {
         public Text health;
         public Text altitude;
+        public Text timer;
 
         void Update ()
         {
-            altitude.text = String.Format("Altitude: {0}", PlayerVariables.altitude.ToString()) ;
-            health.text = String.Format("Health: {0}", PlayerVariables.health.ToString()) ;
+            altitude.text = string.Format("Altitude: {0}", PlayerVariables.altitude.ToString()) ;
+            health.text = string.Format("Health: {0}", PlayerVariables.health.ToString()) ;
+
+            UpdateTimer();
+        }
+
+        void UpdateTimer()
+        {
+            int minutes = Mathf.FloorToInt(GlobalVariables.timer / 60F);
+            int seconds = Mathf.FloorToInt(GlobalVariables.timer - minutes * 60);
+
+            string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+
+            timer.text = string.Format("Time: {0}", niceTime);
         }
     }
 }
