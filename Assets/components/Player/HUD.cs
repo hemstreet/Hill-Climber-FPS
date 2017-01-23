@@ -22,9 +22,7 @@ namespace Player
             int minutes = Mathf.FloorToInt(GlobalVariables.timer / 60F);
             int seconds = Mathf.FloorToInt(GlobalVariables.timer - minutes * 60);
 
-            string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
-
-            timer.text = string.Format("Time: {0}", niceTime);
+            timer.text = string.Format("Time: {0:0}:{1:00}", minutes, seconds);
         }
     }
 }

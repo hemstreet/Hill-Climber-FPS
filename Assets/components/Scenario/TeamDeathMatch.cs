@@ -1,16 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TeamDeathMatch : MonoBehaviour {
+namespace Scenario
+{
+    public class TeamDeathMatch : MonoBehaviour
+    {
+        [Header("Options")]
+        public float timeLimit;
+        public string levelKey = "Mountain";
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        void Setup()
+        {
+            GlobalVariables.timer = 0;
+        }
+
+        void Update () {
+            GlobalVariables.timer += Time.deltaTime;
+
+            if (GlobalVariables.timer >= timeLimit) {
+                Application.LoadLevel(levelKey);
+            }
+        }
+    }
 }

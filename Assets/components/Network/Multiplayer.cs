@@ -12,7 +12,6 @@ namespace Network
 
             if (isLocalPlayer) return;
 
-
             Camera.main.enabled = false;
 
             foreach (Behaviour script in componentsToDisable)

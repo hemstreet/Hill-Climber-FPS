@@ -1,21 +1,27 @@
 ﻿using UnityEngine;
 
-public class HillClimb : MonoBehaviour
+namespace Scenario
 {
-    [Header("Options")]
-    public float timer = 50f;
-    public string levelKey = "level01";
 
-    void Setup()
+    public class HillClimb : MonoBehaviour
     {
-        GlobalVariables.timer = timer;
+        [Header("Options")]
+        public float timer;
+        public string levelKey = "level01";
+
+        void Setup()
+        {
+            GlobalVariables.timer = timer;
+        }
+
+        void Update()
+        {
+            GlobalVariables.timer -= Time.deltaTime;
+
+            if (GlobalVariables.timer <= 0)
+            {
+                Application.LoadLevel(levelKey);
+            }
+        }
     }
-
-	void Update () {
-	    GlobalVariables.timer -= Time.deltaTime;
-
-	    if (GlobalVariables.timer <= 0) {
-	        Application.LoadLevel(levelKey);
-	    }
-	}
 }
